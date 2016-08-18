@@ -51,7 +51,9 @@ class framework implements \H5PFrameworkInterface {
         if (!isset($interface)) {
             $interface = new \mod_hvp\framework();
 
-            $fs = new \mod_hvp\file_storage();
+            $fsclass = property_exists($CFG, 'mod_hvp_fs')
+                    ? $CFG->mod_hvp_fs : '\\mod_hvp\\file_storage';
+            $fs = new $fsclass();
 
             $context = \context_system::instance();
             $url = "{$CFG->httpswwwroot}/pluginfile.php/{$context->id}/mod_hvp";
