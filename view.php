@@ -120,16 +120,16 @@ if ($embedtype === 'div') {
 
     // Schedule JavaScripts for loading through Moodle.
     foreach ($files['scripts'] as $script) {
-        $url = $hvppath . $script->path . $script->version;
+        $url = new moodle_url($core->url . $script->path . $script->version);
         $settings['loadedJs'][] = $url;
-        $PAGE->requires->js(new moodle_url($CFG->httpswwwroot . $url), true);
+        $PAGE->requires->js($url, true);
     }
 
     // Schedule stylesheets for loading through Moodle.
     foreach ($files['styles'] as $style) {
-        $url = $hvppath . $style->path . $style->version;
+        $url = new moodle_url($core->url . $style->path . $style->version);
         $settings['loadedCss'][] = $url;
-        $PAGE->requires->css(new moodle_url($CFG->httpswwwroot . $url));
+        $PAGE->requires->css($url);
     }
 } else {
     // JavaScripts and stylesheets will be loaded through h5p.js.
