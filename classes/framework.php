@@ -56,7 +56,9 @@ class framework implements \H5PFrameworkInterface {
             $fs = new $fsclass();
 
             $context = \context_system::instance();
-            $url = "{$CFG->httpswwwroot}/pluginfile.php/{$context->id}/mod_hvp";
+            $url = property_exists($CFG, 'mod_hvp_url')
+                    ? $CFG->mod_hvp_url
+                    : "{$CFG->httpswwwroot}/pluginfile.php/{$context->id}/mod_hvp";
 
             $language = self::get_language();
 
