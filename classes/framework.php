@@ -61,7 +61,7 @@ class framework implements \H5PFrameworkInterface {
             $export = !(isset($CFG->mod_hvp_export) && $CFG->mod_hvp_export === '0');
 
             $core = new \H5PCore($interface, $fs, $url, $language, $export);
-            $core->aggregateAssets = !(isset($CFG->mod_hvp_aggregate_assets) && $CFG->mod_hvp_aggregate_assets === '0');
+            $core->aggregateAssets = !empty($CFG->mod_hvp_aggregate_assets);
         }
 
         switch ($type) {
